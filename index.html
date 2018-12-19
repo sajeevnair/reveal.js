@@ -33,10 +33,11 @@
 					<section>
 						<h2>Types Version Control</h2>
 						<aside class="notes">
-							<p>Before starting, important to know the differences</p>
+							<p>Before starting, its important to know the how git compares to centralized SVn</p>
 						</aside>
 					</section>
 					<section>
+						
 						<h3>Subversion</h3>
 						<h4>A centralized approach</h4>
 						<p>
@@ -45,6 +46,11 @@
 								<li class="fragment">When others save their work, you get affected</li>
 							</ul>
 						</p>
+						<aside class="notes">
+								<p>
+									Subversion stores additional copies of data on the local machine, which can become an issue with very large projects or files, or if developers work on multiple branches simultaneously.
+								</p>
+						</aside>
 					</section>
 					<section>
 						<h3>Subversion</h3>
@@ -72,8 +78,29 @@
 						<h2>Under the Hood</h2>
 					</section>
 					<section>
-						<h3>What are Commits</h3>
+						<h3>Git Objects</h3>
+						<ul>
+							<li class="fragment">BLOB</li>
+							<li class="fragment">Tree</li>
+							<li class="fragment">Commit</li>
+							<li class="fragment">Tag</li>
+						</ul>
+					<aside class="notes">
+						<p>
+							A blob holds the entire contents of a single file. It doesn’t hold any information about the name of the file or any other metadata, just the contents.
+						</p>
+						<p>
+							A tree represents the state of a directory tree. It contains the pathnames of all the component files and their modes, along with the IDs of the blobs holding their contents. Note that there is no representation for a directory on its own, so a Git repository cannot record the fact that subdirectories were created or deleted, only the files in them.
+						</p>
+						<p>
+							A commit points to a tree representing the state of the source tree as of immediately after that commit. It also records the date/time of the commit, the author/committer information, and pointers to any parent(s) of that commit, representing the immediately-prior state of the source tree.
+						</p>
+						<p>
+							A tag is a name pointing to a commit. These are useful, for example, to mark release milestones. Tags can optionally be digitally signed, to guarantee the authenticity of the commit.
+						</p>
+					</aside>
 					</section>
+
 					<section>
 						<h3>What are Branches?</h3>
 						<p>They  are a copy of the source tree.</p>
@@ -136,13 +163,16 @@
 				</section>
 				<section>
 					<section>
-						<h2>Usefuloo tools</h2>
+						<h2>Useful tools</h2>
 					</section>
 					<section>
 						<h3>Cherry Pick</h3>
 					</section>
 					<section>
 						<h3>Reset</h3>
+					</section>
+					<section>
+						<h3>Stash</h3>
 					</section>
 				</section>
 				
