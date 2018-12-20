@@ -1,199 +1,240 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/night.css">
+	<title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/night.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<H1>GIT</H1>
+				<p>An Introduction to Version Control</p>
+				<p><small>by Sajeev Nair</small></p>
+			</section>
+			<section>
 				<section>
-					<H1>GIT</H1>
-					<p>An Introduction to Version Control</p>
-					<p><small>by Sajeev Nair</small></p>
+					<h2>Types Version Control</h2>
+					<aside class="notes">
+						<p>Before starting, its important to know the how git compares to centralized SVn</p>
+					</aside>
 				</section>
 				<section>
-					<section>
-						<h2>Types Version Control</h2>
-						<aside class="notes">
-							<p>Before starting, its important to know the how git compares to centralized SVn</p>
-						</aside>
-					</section>
-					<section>
-						
-						<h3>Subversion</h3>
-						<h4>A centralized approach</h4>
-						<p>
-							<ul>
-								<li class="fragment">You save to the same place as everyone else</li>
-								<li class="fragment">When others save their work, you get affected</li>
-							</ul>
-						</p>
-						<aside class="notes">
-								<p>
-									Subversion stores additional copies of data on the local machine, which can become an issue with very large projects or files, or if developers work on multiple branches simultaneously.
-								</p>
-						</aside>
-					</section>
-					<section>
-						<h3>Subversion</h3>
-						<img height="550px" src="img/svn.png">
-					</section>
-					<section>
-						<h3>GIT</h3>
-						<h4>A distributed approach</h4>
-						<p>
-							<ul>
-								<li class="fragment">Each person works independently from the centralized code</li>
-								<li class="fragment">All changes are saved to the local repository</li>
-								<li class="fragment">When changes are ready, connect to remote, push branch to repository </li>
-							</ul>
-						</p>
-					</section>
-					<section>
-						<h3>GIT</h3>
-						<img height="550px" src="img/git.png">
-					</section>
-				</section>
-				
-				<section>
-					<section>
-						<h2>Under the Hood</h2>
-					</section>
-					<section>
-						<h3>Git Objects</h3>
+
+					<h3>Subversion</h3>
+					<h4>A centralized approach</h4>
+					<p>
 						<ul>
-							<li class="fragment">BLOB</li>
-							<li class="fragment">Tree</li>
-							<li class="fragment">Commit</li>
-							<li class="fragment">Tag</li>
+							<li class="fragment">You save to the same place as everyone else</li>
+							<li class="fragment">When others save their work, you get affected</li>
 						</ul>
+					</p>
 					<aside class="notes">
 						<p>
-							A blob holds the entire contents of a single file. It doesn’t hold any information about the name of the file or any other metadata, just the contents.
-						</p>
-						<p>
-							A tree represents the state of a directory tree. It contains the pathnames of all the component files and their modes, along with the IDs of the blobs holding their contents. Note that there is no representation for a directory on its own, so a Git repository cannot record the fact that subdirectories were created or deleted, only the files in them.
-						</p>
-						<p>
-							A commit points to a tree representing the state of the source tree as of immediately after that commit. It also records the date/time of the commit, the author/committer information, and pointers to any parent(s) of that commit, representing the immediately-prior state of the source tree.
-						</p>
-						<p>
-							A tag is a name pointing to a commit. These are useful, for example, to mark release milestones. Tags can optionally be digitally signed, to guarantee the authenticity of the commit.
+							Subversion stores additional copies of data on the local machine, which can become an issue with very large
+							projects or files, or if developers work on multiple branches simultaneously.
 						</p>
 					</aside>
-					</section>
-
-					<section>
-						<h3>What are Branches?</h3>
-						<p>They  are a copy of the source tree.</p>
-						<p class="fragment">Or, are they</p>
-					</section>
-					<section>
-							<h3>So, what are branches then?</h3>
-							<p class="fragment">A pointer to a commit, with a name.</p>
-							<p class="fragment">Nothing is created, moved or deleted.</p>
-							<p class="fragment">That pointer points to the latest commit, keeps geting updated.</p>
-					</section>
-					<section>
-						<h3>What is HEAD?</h3>
-						<p class="fragment">References the latest commit</p>
-						<p class="fragment">You could say it references the branch</p>
-					</section>
 				</section>
 				<section>
-					<section>
-						<h2>Merge vs Rebase</h2>
-					</section>
-					<section>
-						<h3>What is a Merge?</h3>
+					<h3>Subversion</h3>
+					<img height="550px" src="img/svn.png">
+				</section>
+				<section>
+					<h3>GIT</h3>
+					<h4>A distributed approach</h4>
+					<p>
+						<ul>
+							<li class="fragment">Each person works independently from the centralized code</li>
+							<li class="fragment">All changes are saved to the local repository</li>
+							<li class="fragment">When changes are ready, connect to remote, push branch to repository </li>
+						</ul>
+					</p>
+				</section>
+				<section>
+					<h3>GIT</h3>
+					<img height="550px" src="img/git.png">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Under the Hood</h2>
+				</section>
+				<section>
+					<h3>Git Object Model</h3>
+					<ul>
+						<li class="fragment">BLOB</li>
+						<li class="fragment">Tree</li>
+						<li class="fragment">Commit</li>
+						<li class="fragment">Tag</li>
+
+					</ul>
+					<aside class="notes">
 						<p>
-							Exactly what is sounds like, merging forked history.
+							A blob holds the entire contents of a single file. It doesn’t hold any information about the name of the file or
+							any other metadata, just the contents.
 						</p>
-						<aside class="notes">
-							<p>
-								Git merge will combine multiple sequences of commits into one unified history. In the most frequent use cases, git merge is used to combine two branches.
-							</p>
-							<p>
-								Merge takes two commit pointers, usually the branch tips, and will find a common base commit between them. Once Git finds a common base commit it will create a new "merge commit" that combines the changes of each queued merge commit sequence.
-							</p>
-
-						</aside>
-					</section>
-					<section>
-						<h3>Merge Example</h3>
-						<img class="fragment" src="img/m1.png" alt="">
-						<img class="fragment" src="img/m2.png" alt="">
-						<aside class="notes">
-							<p>
-									The top-most commit, the red one, is a new commit made by the merge; the merge commit is what reminds Git that a merge occurred next time it’s showing the history. This commit is special, as it contains multiple parent’s in it’s meta-data; these multiple parent’s allow Git to follow the two trees of commits that constituted the branches that were merged.
-							</p>
-						</aside>
-					</section>
-					<section>
-						<h3>Demo</h3>
-						<a href="https://learngitbranching.js.org/?NODEMO" target="_blank" rel="noopener noreferrer">Visual Example</a>
-					</section>
-					<section>
-						<h3>Rebase</h3>
-					</section>
-					<section>
-						<h3>Squash</h3>
-					</section>
-					<section>
-						<h3>Force Push</h3>
-					</section>
+						<p>
+							A tree represents the state of a directory tree. It contains the pathnames of all the component files and their
+							modes, along with the IDs of the blobs holding their contents. Note that there is no representation for a
+							directory on its own, so a Git repository cannot record the fact that subdirectories were created or deleted,
+							only the files in them.
+						</p>
+						<p>
+							A commit points to a tree representing the state of the source tree as of immediately after that commit. It also
+							records the date/time of the commit, the author/committer information, and pointers to any parent(s) of that
+							commit, representing the immediately-prior state of the source tree.
+						</p>
+						<p>
+							A tag is a name pointing to a commit. These are useful, for example, to mark release milestones. Tags can
+							optionally be digitally signed, to guarantee the authenticity of the commit.
+						</p>
+					</aside>
 				</section>
 				<section>
-					<section>
-						<h2>Useful tools</h2>
-					</section>
-					<section>
-						<h3>Cherry Pick</h3>
-					</section>
-					<section>
-						<h3>Reset</h3>
-					</section>
-					<section>
-						<h3>Stash</h3>
-					</section>
+					<img src="img/objects.png" height="550px" alt="git objects">
 				</section>
-				
-			</div>
+			</section>
+			<section>
+				<section>
+					<h2>Branching</h2>
+				</section>
+				<section>
+					<h3>What are Branches?</h3>
+					<p>They are a copy of the source tree.</p>
+					<p class="fragment">Or, are they</p>
+				</section>
+				<section>
+					<h3>So, what are branches then?</h3>
+					<p class="fragment">A pointer to a commit, with a name.</p>
+					<p class="fragment">Nothing is created, moved or deleted.</p>
+					<p class="fragment">That pointer points to the latest commit, keeps geting updated.</p>
+				</section>
+				<section>
+					<h3>What is HEAD?</h3>
+					<p class="fragment">References the latest commit</p>
+					<p class="fragment">You could say it references the branch</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Merge vs Rebase</h2>
+				</section>
+				<section>
+					<h3>What is a Merge?</h3>
+					<p>
+						Exactly what is sounds like, merging forked history.
+					</p>
+					<aside class="notes">
+						<p>
+							Git merge will combine multiple sequences of commits into one unified history. In the most frequent use cases,
+							git merge is used to combine two branches.
+						</p>
+						<p>
+							Merge takes two commit pointers, usually the branch tips, and will find a common base commit between them. Once
+							Git finds a common base commit it will create a new "merge commit" that combines the changes of each queued
+							merge commit sequence.
+						</p>
+
+					</aside>
+				</section>
+				<section>
+					<h3>Merge Example</h3>
+					<img class="fragment" src="img/m1.png" alt="">
+					<img class="fragment" src="img/m2.png" alt="">
+					<aside class="notes">
+						<p>
+							The top-most commit, the red one, is a new commit made by the merge; the merge commit is what reminds Git that a
+							merge occurred next time it’s showing the history. This commit is special, as it contains multiple parent’s in
+							it’s meta-data; these multiple parent’s allow Git to follow the two trees of commits that constituted the
+							branches that were merged.
+						</p>
+					</aside>
+				</section>
+				<section>
+					<h3>Demo</h3>
+					<a href="https://learngitbranching.js.org/?NODEMO" target="_blank" rel="noopener noreferrer">Visual Example</a>
+				</section>
+				<section>
+					<h3>Rebase</h3>
+				</section>
+				<section>
+					<h3>Squash</h3>
+				</section>
+				<section>
+					<h3>Force Push</h3>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Useful Commands</h2>
+				</section>
+				<section>
+					<h3>Cherry Pick</h3>
+				</section>
+				<section>
+					<h3>Reset</h3>
+					<h4>reset head</h4>
+				</section>
+				<section>
+					<h3>Stash</h3>
+				</section>
+				<section>
+					<h3>git ignore, git assume unchanged</h3>
+				</section>
+			</section>
+
 		</div>
+	</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [{
+					src: 'plugin/markdown/marked.js'
+				},
+				{
+					src: 'plugin/markdown/markdown.js'
+				},
+				{
+					src: 'plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'plugin/highlight/highlight.js',
+					async: true,
+					callback: function () {
+						hljs.initHighlightingOnLoad();
+					}
+				}
+			]
+		});
+	</script>
+</body>
+
 </html>
