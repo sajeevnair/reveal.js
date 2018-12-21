@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>reveal.js</title>
+	<title>An Overview of GIT</title>
 
 	<link rel="stylesheet" href="css/reveal.css">
 	<link rel="stylesheet" href="css/theme/night.css">
@@ -116,7 +116,7 @@
 				</section>
 			</section>
 			<section>
-				<section>
+				<section data-background-image="https://media2.giphy.com/media/LE8Zdgvf2XBy8/giphy.gif?cid=3640f6095c1c89964c5539494d0080c7">
 					<h2>Branching</h2>
 				</section>
 				<section>
@@ -135,14 +135,27 @@
 					<p class="fragment">References the latest commit</p>
 					<p class="fragment">You could say it references the branch</p>
 				</section>
+				<section>
+					<h3>Moving HEAD</h3>
+					<p>Move to parent</p>
+					<code class="hljs">GIT CHECKOUT HEAD^</code>
+					<p>Move back by 3 commits</p>
+					<code class="hljs">GIT CHECKOUT HEAD~3</code>
+
+				</section>
+				<section>
+					<h3>Demo</h3>
+					<a href="https://learngitbranching.js.org/?NODEMO" target="_blank" rel="noopener noreferrer">Visual Example</a>
+				</section>
 			</section>
 			<section>
 				<section>
-					<h2>Merge vs Rebase</h2>
+					<h2>Merges & Rebase</h2>
 				</section>
+				<section data-background-image="https://media0.giphy.com/media/cFkiFMDg3iFoI/giphy.gif?cid=3640f6095c1c8a1d703533354dea45b6"></section>
 				<section>
 					<h3>What is a Merge?</h3>
-					<p>
+					<p class="fragment">
 						Exactly what is sounds like, merging forked history.
 					</p>
 					<aside class="notes">
@@ -175,14 +188,93 @@
 					<h3>Demo</h3>
 					<a href="https://learngitbranching.js.org/?NODEMO" target="_blank" rel="noopener noreferrer">Visual Example</a>
 				</section>
-				<section>
-					<h3>Rebase</h3>
+				<section data-background-image="https://media0.giphy.com/media/kigok3k6Ru2kP3hfNq/giphy.gif?cid=3640f6095c1c90fb34653730323e7193">
+					<h3>But wait, there's Fast forward >> </h3>
+
 				</section>
 				<section>
-					<h3>Squash</h3>
+					<h3>Squash merge & Bitbucket</h3>
+				</section>
+				<section data-background-image="https://rlmr51w5rw3n7zek1m7tizzg-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/2017-01-26-14-01-41.png">
+
+				</section>
+				<section data-background-image="https://media3.giphy.com/media/PlnQNcQ4RYOhG/giphy.gif?cid=3640f6095c1caca8677351432e67740d">
+					<h3>Rebasing</h3>
+				</section>
+				<section data-background-image="img/git-rebase.gif">
+				</section>
+				<section data-background-image="img/rebase-on-master.gif"></section>
+				<section>
+					<h3>Interactive Rebase</h3>
+					<code class="hljs">git rebase -i HEAD~X</code>
+					<ul>
+						<li>
+							pick: leave as-is (default)
+						</li>
+						<li>
+							edit: separate commit into several discrete commits
+						</li>
+						<li>
+							squash: combine commits
+						</li>
+						<li>
+							delete: remove line referencing commit(s)
+						</li>
+						<li>
+							re-order: change the order of the lines
+						</li>
+					</ul>
+					<aside class="notes">
+						<p>
+							you can change the action (which is by default 'pick') to either 'edit' or 'squash', or just leave it as 'pick'.
+							You can also reorder the commits just by moving the lines around however you want. Then, when you exit the
+							editor, git will try to apply the commits however they are now arranged and do the action specified.
+
+							If 'pick' is specified, it will simply try to apply the patch and save the commit with the same message as
+							before.
+
+							If 'squash' is specified, it will combine that commit with the previous one to create a new commit. This will
+							drop you into your editor again to merge the commit messages of the two commits it is now squashing together.
+							So, if you exit the editor with this:
+						</p>
+					</aside>
+				</section>
+				<section data-background-image="https://media0.giphy.com/media/8UYMQ5MCmuqXu/giphy.gif?cid=3640f6095c1c8eb74f726c7749636520">
+					<h3>
+						If you remove a line here <span class="fragment grow highlight-red"> THAT COMMIT WILL BE LOST.</span>
+					</h3>
+				</section>
+
+				<section>
+					<h3>How does it stop?</h3>
+					<ul>
+						<li>
+							If things go right, it will stop on its own.
+						</li>
+						<li>
+							If there are tears, you can abort the process:
+							<code class="hljs">
+								$ git rebase --abort
+							</code>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Demo</h3>
+					<a href="https://learngitbranching.js.org/?NODEMO" target="_blank" rel="noopener noreferrer">Visual Example</a>
 				</section>
 				<section>
-					<h3>Force Push</h3>
+					<h3>The Golden Rule</h3>
+					<p>The golden rule of git rebase is to never use it on public branches.</p>
+				</section>
+				<section data-background-image="https://media2.giphy.com/media/9E7kUhnT9eDok/giphy.gif?cid=3640f6095c1cae964651693349c12a63">
+					<h3>The Force</h3>
+					<code class="hljs">git push --force</code>
+
+				</section>
+				<section data-background-image="https://media0.giphy.com/media/sgWHkkjwcnKes/giphy.gif?cid=3640f6095c1cafd06a47724277926e31">
+					<code class="hljs">git push --force-with-lease</code>
 				</section>
 			</section>
 			<section>
@@ -190,19 +282,69 @@
 					<h2>Useful Commands</h2>
 				</section>
 				<section>
+					<h3>Revert</h3>
+					<code>git revert HEAD</code>
+					<code>git revert e3ed4d</code>
+					<code>git revert -m 1 4e3def</code>
+				</section>
+				<section>
 					<h3>Cherry Pick</h3>
+					<p>one or more commits</p>
+					<code class="hljs">
+						git cherry-pick d467740 de906d4
+					</code>
+					<p>
+						In case you needed to cherry pick a merge instead of a commit, you can use:
+					</p>
+					<code class="hljs">
+						git cherry-pick -m 1 <hash>
+					</code>
+				</section>
+				<section>
+					<h3>Cherry Pick range</h3>
+					<p> For Range of commits
+					</p>
+					<code class="hljs">git cherry-pick A..B</code>
+					<p> A should be older than B.
+						If they're the wrong order the command will silently fail.
+					</p>
+					<p>
+						If you want to pick the range B through D (inclusive) that would be B^..D.
+					</p>
 				</section>
 				<section>
 					<h3>Reset</h3>
-					<h4>reset head</h4>
+					<p>undo a git add </p>
+					<code class="hljs">git reset</code>
+					<p>to delete the changes locally use --hard</p>
+					<p>to pop out a commit to the void</p>
+					<code class="hljs">git reset HEAD~</code>
 				</section>
-				<section>
+				<section data-background-image="https://media0.giphy.com/media/12u8LCiqczHITC/giphy.gif?cid=3640f6095c1cb110374f566f32133003">
 					<h3>Stash</h3>
+					<code class="hljs">git stash</code>
+					<code class="hljs">git stash pop</code>
 				</section>
 				<section>
-					<h3>git ignore, git assume unchanged</h3>
+					<h3>Assume unchanged</h3>
+					<code class="hljs">git update-index --assume-unchanged</code>
 				</section>
-			</section>
+				<section>
+					<h3>ohmyzsh aliases</h3>
+				</section>
+
+				<section data-background-image="https://media0.giphy.com/media/I1up3FdlHNPkk/giphy.gif?cid=3640f6095c1cb5006c5535354137f539">
+					<h3>tldr</h3>
+					<small> pull => fetch + merge</small>
+					<small> merge --no-ff => forces a merge commit object (“true merge”) </small>
+					<small> merge --ff-only => fast forward (graph looks like rebase)</small>
+					<small> merge --squash => compress commits to one; then merge</small>
+					<small> rebase => forward-port local commits</small>
+					<small> cherry-pick => merge individual commits</small>
+
+
+				</section>
+				<section data-background-image="https://media2.giphy.com/media/lD76yTC5zxZPG/giphy.gif?cid=3640f6095c1cb8213453432f45c2458d"></section>
 
 		</div>
 	</div>
